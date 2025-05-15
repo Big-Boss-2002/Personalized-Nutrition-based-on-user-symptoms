@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Personalized Diet Center</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+  </head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Personalized Diet Center</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <h1 class="text-center text-primary">Personalized Diet Center</h1>
+        <form action="/predict" method="post">
+            <div class="mb-3">
+                <label for="symptoms" class="form-label">Enter Symptoms:</label>
+                <input type="text" class="form-control" id="symptoms" name="symptoms" placeholder="e.g. itching, headache">
+            </div>
+            <button type="submit" class="btn btn-danger w-100">Predict</button>
+        </form>
+    </div>
+
+    {% if predicted_disease %}
+    <div class="container mt-4">
+        <h2 class="text-center">AI System Results</h2>
+        <div class="accordion" id="resultsAccordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingDisease">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDisease">Disease</button>
+                </h2>
+                <div id="collapseDisease" class="accordion-collapse collapse" data-bs-parent="#resultsAccordion">
+                    <div class="accordion-body">{{ predicted_disease }}</div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingDescription">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDescription">Description</button>
+                </h2>
+                <div id="collapseDescription" class="accordion-collapse collapse" data-bs-parent="#resultsAccordion">
+                    <div class="accordion-body">{{ dis_des }}</div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingPrecaution">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePrecaution">Precautions</button>
+                </h2>
+                <div id="collapsePrecaution" class="accordion-collapse collapse" data-bs-parent="#resultsAccordion">
+                    <div class="accordion-body">
+                        <ul>{% for i in my_precautions %}<li>{{ i }}</li>{% endfor %}</ul>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingMedications">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMedications">Medications</button>
+                </h2>
+                <div id="collapseMedications" class="accordion-collapse collapse" data-bs-parent="#resultsAccordion">
+                    <div class="accordion-body">
+                        <ul>{% for i in medications %}<li>{{ i }}</li>{% endfor %}</ul>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingWorkouts">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWorkouts">Workouts</button>
+                </h2>
+                <div id="collapseWorkouts" class="accordion-collapse collapse" data-bs-parent="#resultsAccordion">
+                    <div class="accordion-body">
+                        <ul>{% for i in workout %}<li>{{ i }}</li>{% endfor %}</ul>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingDiets">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDiets">Diets</button>
+                </h2>
+                <div id="collapseDiets" class="accordion-collapse collapse" data-bs-parent="#resultsAccordion">
+                    <div class="accordion-body">
+                        <ul>{% for i in my_diet %}<li>{{ i }}</li>{% endfor %}</ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

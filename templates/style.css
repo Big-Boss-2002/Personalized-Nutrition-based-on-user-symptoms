@@ -1,0 +1,36 @@
+.logo {
+  width: 50px;
+  height: 50px;
+  margin-top: 0;
+  margin-left: 2px;
+}
+
+.myimg {
+  width: 50px;
+  height: 50px;
+  border: 2px solid black;
+  border-radius: 25px;
+}
+
+/* Accordion Styling */
+.accordion-button {
+  background-color: #f8f9fa;
+  color: #000;
+  font-weight: bold;
+  border: none;
+}
+
+.accordion-button:focus {
+  box-shadow: none;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #007bff;
+  color: white;
+}
+
+.accordion-body {
+  background-color: #f1f1f1;
+  padding: 15px;
+  border-left: 3px solid #007bff;
+}
